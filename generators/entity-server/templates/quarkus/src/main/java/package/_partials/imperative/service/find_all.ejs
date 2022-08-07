@@ -29,10 +29,10 @@
     <%_ if (databaseType === 'sql' && isUsingMapsId === true) { _%>
     @Transactional(readOnly = true)
     <%_ } _%>
-    public <% if(hasPagination) { %>Paged<<%= entityOrDtoClass %>><% } else { %> List<<%= entityOrDtoClass %>><% } %> findAll(<% if(hasPagination) { %>Page page<% } %>) {
+    public <% if(hasPagination) { %>Paged<<%= entityOrDtoClass %>><% } else { %> List<<%= entityOrDtoClass %>><% } %> findAll(<% if(hasPagination) { %>Page page, Sort sort<% } %>) {
         log.debug("Request to get all <%= entityClassPlural %>");
         <%_ if(hasPagination) { _%>
-        return new Paged<>(<%= dataAccessObject %>.findAll().page(page))<% if(!hasDto) { %>;<% } else { %>
+        return new Paged<>(<%= dataAccessObject %>.findAll(sort).page(page))<% if(!hasDto) { %>;<% } else { %>
             .map(<%= entityInstance %> -> <%= mapper %>.toDto((<%= entityClass %>) <%= entityInstance %>));
             <%_ } _%>
         <%_ } else { _%>
@@ -54,11 +54,11 @@
     <%_ } _%>
      * @return the list of entities.
      */
-    public <% if(hasPagination) { %>Paged<<%= entityOrDtoClass %>><% } else { %> List<<%= entityOrDtoClass %>><% } %> findAllWithEagerRelationships(<% if(hasPagination) { %>Page page<% } %>) {
+    public <% if(hasPagination) { %>Paged<<%= entityOrDtoClass %>><% } else { %> List<<%= entityOrDtoClass %>><% } %> findAllWithEagerRelationships(<% if(hasPagination) { %>Page page, Sort sort<% } %>) {
         <%_ if(hasPagination) { _%>
         var <%= entityInstancePlural %> = <%= dataAccessObject %>.findAllWithEagerRelationships().page(page).list();
         var totalCount = <%= dataAccessObject %>.findAll().count();
-        var pageCount = <%= dataAccessObject %>.findAll().page(page).pageCount();
+        var pageCount = <%= dataAccessObject %>.findAll(sort).page(page).pageCount();
         return new Paged<>(page.index, page.size, totalCount, pageCount, <%= entityInstancePlural %>)<% if(!hasDto) { %>;<% } else { %>
             .map(<%= entityInstance %> -> <%= mapper %>.toDto((<%= entityClass %>) <%= entityInstance %>));
             <%_ } _%>

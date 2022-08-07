@@ -39,12 +39,12 @@
                 <%_ if (fieldsContainOwnerManyToMany) { _%>
         Paged<<%= entityOrDtoClass %>> result;
         if (eagerload) {
-            result = <%= entityInstance %>Service.findAllWithEagerRelationships(page);
+            result = <%= entityInstance %>Service.findAllWithEagerRelationships(page, sort);
         } else {
-            result = <%= entityInstance %>Service.findAll(page);
+            result = <%= entityInstance %>Service.findAll(page, sort);
         }
                 <%_ } else { _%>
-        Paged<<%= entityOrDtoClass %>> result = <%= entityInstance %>Service.findAll(page);
+        Paged<<%= entityOrDtoClass %>> result = <%= entityInstance %>Service.findAll(page, sort);
                 <%_ } _%>
         <%_ } else { _%>
             <%_ if (fieldsContainOwnerManyToMany) { _%>

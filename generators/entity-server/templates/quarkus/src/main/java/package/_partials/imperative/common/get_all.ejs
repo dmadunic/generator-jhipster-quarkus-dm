@@ -28,9 +28,9 @@
                 <%_ if (fieldsContainOwnerManyToMany) { _%>
         Paged<<%= entityOrDtoClass %>> result;
         if (eagerload) {
-            result = <%= entityInstance %>Service.findAllWithEagerRelationships(page);
+            result = <%= entityInstance %>Service.findAllWithEagerRelationships(page, sort);
         } else {
-            result = <%= entityInstance %>Service.findAll(page);
+            result = <%= entityInstance %>Service.findAll(page, sort);
         }
                 <%_ } else { _%>
         Paged<<%= entityOrDtoClass %>> result = <%= entityInstance %>Service.findAll(page);
@@ -41,7 +41,7 @@
         if (eagerload) {
             var <%= entityInstancePlural %> = <%= dataAccessObject %>.findAllWithEagerRelationships().page(page).list();
             var totalCount = <%= dataAccessObject %>.findAll().count();
-            var pageCount = <%= dataAccessObject %>.findAll().page(page).pageCount();
+            var pageCount = <%= dataAccessObject %>.findAll(sort).page(page).pageCount();
             result = new Paged<>(page.index, page.size, totalCount, pageCount, <%= entityInstancePlural %>);
         } else {
             result = new Paged<>(<%= dataAccessObject %>.findAll(sort).page(page));

@@ -25,6 +25,7 @@ import <%= packageName %>.domain.<%= entityOrDtoClass %>;
 <%_ } _%>
 <%_ if (hasPagination) { _%>
 import io.quarkus.panache.common.Page;
+import io.quarkus.panache.common.Sort;
 <%_ } _%>
 
 <%_ if (!hasPagination || fieldsContainNoOwnerOneToOne === true) { _%>
@@ -62,7 +63,7 @@ public interface <%= entityClass %>Service {
     <%_ } _%>
      * @return the list of entities.
      */
-    public <% if(hasPagination) { %>Paged<<%= entityOrDtoClass %>><% } else { %> List<<%= entityOrDtoClass %>><% } %> findAll(<% if(hasPagination) { %>Page page<% } %>);
+    public <% if(hasPagination) { %>Paged<<%= entityOrDtoClass %>><% } else { %> List<<%= entityOrDtoClass %>><% } %> findAll(<% if(hasPagination) { %>Page page, Sort sort<% } %>);
 
     /**
      * Get the "id" <%= entityOrDtoInstance %>.

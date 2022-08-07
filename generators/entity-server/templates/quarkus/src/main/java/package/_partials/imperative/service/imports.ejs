@@ -21,6 +21,7 @@ import <%= packageName %>.service.<%= entityClass %>Service;
 <%_ } _%>
 <%_ if (hasPagination) { _%>
 import io.quarkus.panache.common.Page;
+import io.quarkus.panache.common.Sort;
     <%_ if (hasServiceImpl) { _%>
 import <%= packageName %>.service.Paged;
     <%_ } _%>
