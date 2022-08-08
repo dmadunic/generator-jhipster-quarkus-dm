@@ -148,7 +148,7 @@ describe('Subgenerator entity of quarkus JHipster blueprint', () => {
         it('update service finder signature', () => {
             assert.fileContent(
                 `${SERVER_MAIN_SRC_DIR}com/mycompany/myapp/service/FooService.java`,
-                'public Paged<FooDTO> findAll(Page page)'
+                'public Paged<FooDTO> findAll(Page page, Sort)'
             );
         });
     });
