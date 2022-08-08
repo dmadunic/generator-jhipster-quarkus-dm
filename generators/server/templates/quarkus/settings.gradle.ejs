@@ -24,22 +24,46 @@ pluginManagement {
           gradlePluginPortal()
      }
      plugins {
-          id 'com.gorylenko.gradle-git-properties' version "${git_properties_plugin_version}"
+          id 'com.gorylenko.gradle-git-properties' version "${gitPropertiesPluginVersion}"
           <%_ if (enableSwaggerCodegen) { _%>
-          id "org.openapi.generator" version "${openapi_plugin_version}"
+               id "org.openapi.generator" version "${openapiPluginVersion}"
           <%_ } _%>
           <%_ if (!skipClient) { _%>
-          id 'com.github.node-gradle.node' version "${gradle_node_plugin_version}"
+               id 'com.github.node-gradle.node' version "${gradleNodePluginVersion}"
           <%_ } _%>
           <%_ if (databaseType === 'sql') { _%>
-          id 'org.liquibase.gradle' version "${liquibase_plugin_version}"
+               id 'org.liquibase.gradle' version "${liquibasePluginVersion}"
           <%_ } _%>
-          id 'org.sonarqube' version "${sonarqube_plugin_version}"
-          id 'net.ltgt.apt-eclipse' version "${apt_plugin_version}"
-          id 'net.ltgt.apt-idea' version "${apt_plugin_version}"
-          id 'net.ltgt.apt' version "${apt_plugin_version}"
+          id 'org.sonarqube' version "${sonarqubePluginVersion}"
+          id 'com.github.andygoossens.gradle-modernizer-plugin' version "${modernizerPluginVersion}"
+          <%_ if (enableGradleEnterprise) { _%>
+               id "com.gradle.enterprise" version "${gradleEnterprisePluginVersion}"
+               id "com.gradle.common-custom-user-data-gradle-plugin" version "${gradleCommonCustomUserDataPluginVersion}"
+          <%_ } _%>
           id 'io.quarkus' version "${quarkusPluginVersion}"
      }
 }
 
+<%_ if (enableGradleEnterprise) { _%>
+     plugins {
+         id 'com.gradle.enterprise'
+         id 'com.gradle.common-custom-user-data-gradle-plugin'
+     }
+     gradleEnterprise {
+         server = "<%= gradleEnterpriseHost %>"
+         buildScan {
+             captureTaskInputFiles = true
+             uploadInBackground = System.getenv("CI") == null // adjust to your CI provider
+             publishAlways()
+         }
+     }
+     buildCache {
+         local { enabled = true }
+         remote(HttpBuildCache) {
+             push = true
+             enabled = false // Disabled as this might not always desired
+             url = '<%= gradleEnterpriseHost %>/cache/' // note the trailing slash!
+         }
+     }
+     <%_ } _%>
 rootProject.name = "<%= dasherizedBaseName %>"
