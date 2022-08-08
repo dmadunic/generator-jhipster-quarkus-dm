@@ -54,7 +54,8 @@ description = ""
 
 sourceCompatibility=11
 targetCompatibility=11
-assert System.properties["java.specification.version"] == "1.8" || "11" || "12" || "13"
+assert System.properties["java.specification.version"] == <%- JAVA_COMPATIBLE_VERSIONS.map(ver => `"${ver}"`).join(' || '); %>
+// assert System.properties["java.specification.version"] == "1.8" || "11" || "12" || "13"
 
 apply from: "gradle/docker.gradle"
 apply from: "gradle/sonar.gradle"
