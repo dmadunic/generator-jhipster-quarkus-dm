@@ -65,7 +65,7 @@ docker-compose -f src/main/docker/<%= cacheProvider==='hazelcast'?'hazelcast-man
 ```
 <%_ if (cacheProvider === 'redis') { _%>
 
-The cache can also be turned off by adding to the application yaml:
+The cache can also be turned off by adding the following to the application yaml:
 ```
 spring:
     cache:
