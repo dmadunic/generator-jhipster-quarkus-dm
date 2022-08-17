@@ -12,14 +12,15 @@
 
 This is a [JHipster](https://www.jhipster.tech/) blueprint, that is meant to be used in a JHipster application.
 
-This is my personal clone of the official [quarkus bluprint](https://github.com/jhipster/generator-jhipster-quarkus).
-Major difference is that this plugin is upgraded to the newest versions of quarkus and Jhipster.
+This repository is the clone of the official [quarkus bluprint](https://github.com/jhipster/generator-jhipster-quarkus).
+Major difference is that this blueprint is upgraded to the newest versions of quarkus and Jhipster (see below for the versions).
 
-|          | Version |
-| -------- | ---- |
-| Quarkus  | 2.11.1 |
-| JHipster | 7.9.1  |
+|  Component | Version |
+| ---------- | ------- |
+| Quarkus    | 2.11.1  |
+| JHipster   | 7.9.1   |
 
+Many thanks to the original contributors for creating this plugin, yet, since the development has been stalled I decided to clone it and invest some time and energy into its further development.
 
 # Demo
 
