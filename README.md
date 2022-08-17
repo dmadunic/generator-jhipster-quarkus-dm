@@ -21,7 +21,7 @@ Major difference is that this blueprint is upgraded to the newest versions of qu
 
 |  Component | Version |
 | ---------- | ------- |
-| Quarkus    | 2.11.1  |
+| Quarkus    | 2.11.1-Final  |
 | JHipster   | 7.9.1   |
 
 Many thanks to the original contributors for creating this plugin, yet, since the development has been stalled I decided to clone it and invest some time and energy into its further development.
@@ -76,7 +76,7 @@ Note: If you do not want to link the blueprint(step 3) to each project being cre
 
 ```bash
 
-cd jhipster-quarkus
+cd jhipster-generator-quarkus
 
 npm link
 
@@ -106,7 +106,7 @@ mkdir my-app && cd my-app
 
 
 
-npm link generator-jhipster-quarkus
+npm link generator-jhipster-quarkus-dm
 
 npm link generator-jhipster (Optional: Needed only if you are using a non-released JHipster version)
 
