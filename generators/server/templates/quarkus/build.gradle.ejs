@@ -18,8 +18,7 @@
 -%>
 buildscript {
     repositories {
-        mavenLocal()
-        mavenCentral()
+        gradlePluginPortal()
     }
     dependencies {
         //jhipster-needle-gradle-buildscript-dependency - JHipster will add additional gradle build script plugins here
@@ -29,9 +28,10 @@ buildscript {
 plugins {
     id 'java'
     id 'io.quarkus'
-    id "idea"
     id 'checkstyle'
     id "maven-publish"
+    id "idea"
+    id "eclipse"
     id "jacoco"
     id "com.gorylenko.gradle-git-properties"
     <%_ if (enableSwaggerCodegen) { _%>
@@ -40,9 +40,6 @@ plugins {
     <%_ if (!skipClient) { _%>
     id "com.github.node-gradle.node"
     <%_ } _%>
-    id "net.ltgt.apt-eclipse"
-    id "net.ltgt.apt-idea"
-    id "net.ltgt.apt"
     <%_ if (databaseType === 'sql') { _%>
     id "org.liquibase.gradle"
     <%_ } _%>
@@ -57,7 +54,8 @@ description = ""
 
 sourceCompatibility=11
 targetCompatibility=11
-assert System.properties["java.specification.version"] == "1.8" || "11" || "12" || "13"
+assert System.properties["java.specification.version"] == <%- JAVA_COMPATIBLE_VERSIONS.map(ver => `"${ver}"`).join(' || '); %>
+// assert System.properties["java.specification.version"] == "1.8" || "11" || "12" || "13"
 
 apply from: "gradle/docker.gradle"
 apply from: "gradle/sonar.gradle"
@@ -194,7 +192,7 @@ gitProperties {
 }
 
 checkstyle {
-    toolVersion "${checkstyle_version}"
+    toolVersion "${checkstyleVersion}"
     configFile file("checkstyle.xml")
     checkstyleTest.enabled = false
 }
@@ -244,6 +242,7 @@ dependencies {
     implementation "org.apache.commons:commons-lang3"
 <%_ } _%>
 <%_ if (databaseType === 'sql') { _%>
+    testImplementation "io.quarkus:quarkus-jdbc-h2"
     testImplementation "io.quarkus:quarkus-test-h2"
     implementation "io.quarkus:quarkus-liquibase"
 <%_ } _%>
@@ -260,13 +259,13 @@ dependencies {
 <%_ } _%>
 <%_ if (cacheProvider === 'redis') { _%>
     implementation 'io.quarkus:quarkus-redis-client'
-    implementation "org.apache.camel.quarkus:camel-quarkus-jackson:${camel_quarkus_jackson_version}"
+    implementation "org.apache.camel.quarkus:camel-quarkus-jackson:${camelQuarkusJacksonVersion}"
 <%_ } _%>
     implementation "io.quarkus:quarkus-smallrye-health"
     implementation "io.quarkus:quarkus-micrometer"
     implementation "io.micrometer:micrometer-registry-prometheus"
-    implementation "org.mapstruct:mapstruct:${mapstruct_version}"
-    implementation "com.tietoevry.quarkus:quarkus-resteasy-problem:${resteasy_problem_version}"
+    implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+    implementation "com.tietoevry.quarkus:quarkus-resteasy-problem:${resteasyProblemVersion}"
     implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
 <%_ if (databaseType === 'mongodb') { _%>
     implementation enforcedPlatform("com.github.cloudyrock.mongock:mongock-bom:${mongockBom_version}")
@@ -274,21 +273,21 @@ dependencies {
 
 <%_ if (databaseType === 'sql') { _%>
     liquibaseRuntime "org.liquibase:liquibase-core"
-    liquibaseRuntime "org.liquibase.ext:liquibase-hibernate5:${liquibase_hibernate5_version}"
+    liquibaseRuntime "org.liquibase.ext:liquibase-hibernate5:${liquibaseHibernate5Version}"
     liquibaseRuntime sourceSets.main.compileClasspath
     liquibaseRuntime 'ch.qos.logback:logback-core:1.2.3'
     liquibaseRuntime 'ch.qos.logback:logback-classic:1.2.3'
 
 <%_ } _%>
-    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstruct_version}"
+    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
 
     testImplementation "io.quarkus:quarkus-junit5"
     testImplementation "io.quarkus:quarkus-junit5-mockito"
     testImplementation "io.rest-assured:rest-assured"
     testImplementation "org.assertj:assertj-core"
-    testImplementation "com.tngtech.archunit:archunit-junit5-api:${archunit_junit5_version}"
+    testImplementation "com.tngtech.archunit:archunit-junit5-api:${archunitJunit5Version}"
 <%_ if (authenticationType === 'oauth2') { _%>
-    testImplementation "com.github.tomakehurst:wiremock-jre8:${wiremock_version}"
+    testImplementation "com.github.tomakehurst:wiremock-jre8:${wiremockVersion}"
 <%_ } _%>
 <%_ if (cacheProvider === 'redis') { _%>
     testImplementation "com.github.kstyrc:embedded-redis:${embeddedRedisVersion}"
@@ -299,7 +298,7 @@ dependencies {
 
     //Adding the engine dependency to the surefire-plugin unfortunately does not work in the current version.
     //https://www.archunit.org/userguide/html/000_Index.html#_junit_5
-    testImplementation "com.tngtech.archunit:archunit-junit5-engine:${archunit_junit5_version}"
+    testImplementation "com.tngtech.archunit:archunit-junit5-engine:${archunitJunit5Version}"
 
     //jhipster-needle-gradle-dependency - JHipster will add additional dependencies here
 }
@@ -316,9 +315,8 @@ wrapper {
 
 if (project.hasProperty("nodeInstall")) {
     node {
-        version = "${node_version}"
-        npmVersion = "${npm_version}"
-        yarnVersion = "${yarn_version}"
+        version = "${nodeVersion}"
+        npmVersion = "${npmVersion}"
         download = true
     }
 }

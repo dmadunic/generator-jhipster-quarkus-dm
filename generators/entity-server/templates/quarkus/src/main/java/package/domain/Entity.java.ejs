@@ -314,10 +314,7 @@ public class <%= asEntity(entityClass) %> extends <% if (databaseType === 'sql')
     @ManyToOne<% if (relationshipRequired) { %>(optional = false)<% } %>
     @JoinColumn(name = "<%= getColumnName(relationships[idx].relationshipName) %>_id")
         <%_ if (relationshipValidate) { _%>
-    <%- include(fetchFromInstalledJHipster('entity-server/templates') + '/src/main/java/package/domain/relationship_validators', {
-        idx: idx,
-        relationships: relationships
-    }) -%>
+    <%- include('./relationship_validators', {relationship: relationships[idx]}) -%>
         <%_ }
     } else if (databaseType === 'mongodb' || databaseType === 'couchbase') {
         if (databaseType === 'mongodb') { _%>
@@ -342,10 +339,7 @@ public class <%= asEntity(entityClass) %> extends <% if (databaseType === 'sql')
             <%_ } _%>
         <%_ if (ownerSide === true) {
             if (relationshipValidate) { _%>
-    <%- include(fetchFromInstalledJHipster('entity-server/templates') + '/src/main/java/package/domain/relationship_validators', {
-        idx: idx,
-        relationships: relationships
-    }) -%>
+    <%- include('./relationship_validators', {relationship: relationships[idx]}) -%>
         <%_ } _%>
     @JoinTable(name = "<%= joinTableName %>",
                joinColumns = @JoinColumn(name = "<%= getColumnName(name) %>_id", referencedColumnName = "id"),
@@ -372,10 +366,7 @@ public class <%= asEntity(entityClass) %> extends <% if (databaseType === 'sql')
             if (ownerSide) { _%>
     @OneToOne<% if (relationshipRequired) { %>(optional = false)<% } %>
             <%_ if (relationshipValidate) { _%>
-    <%- include(fetchFromInstalledJHipster('entity-server/templates') + '/src/main/java/package/domain/relationship_validators', {
-        idx: idx,
-        relationships: relationships
-    }) -%>
+    <%- include('./relationship_validators', {relationship: relationships[idx]}) -%>
             <%_ }_%>
             <%_ if (isUsingMapsId === true) { %>
     @MapsId
