@@ -1,19 +1,19 @@
 {
-    "name": "generator-jhipster-quarkus",
+    "name": "generator-jhipster-quarkus-dm",
     "version": "2.0.0-beta.2",
-    "description": "JHipster Quarkus blueprint",
+    "description": "JHipster Quarkus blueprint (dmadunic fork)",
     "keywords": [
         "yeoman-generator",
         "jhipster-blueprint",
         "jhipster-7"
     ],
-    "homepage": "https://github.com/jhipster/generator-jhipster-quarkus",
+    "homepage": "https://github.com/dmadunic/generator-jhipster-quarkus",
     "bugs": {
-        "url": "https://github.com/jhipster/generator-jhipster-quarkus/issues"
+        "url": "https://github.com/dmadunic/generator-jhipster-quarkus/issues"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/jhipster/generator-jhipster-quarkus.git"
+        "url": "git+https://github.com/dmadunic/generator-jhipster-quarkus.git"
     },
     "license": "Apache-2.0",
     "author": {
