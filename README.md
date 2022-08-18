@@ -44,7 +44,7 @@ To install this blueprint:
 
 ```bash
 
-npm install -g generator-jhipster-quarkus
+npm install -g generator-jhipster-quarkus-dm
 
 ```
 
@@ -52,7 +52,7 @@ To update this blueprint:
 
 ```bash
 
-npm update -g generator-jhipster-quarkus
+npm update -g generator-jhipster-quarkus-dm
 
 ```
 
