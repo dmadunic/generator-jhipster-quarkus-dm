@@ -133,7 +133,8 @@ Check out [JHipster contributing guide](https://github.com/jhipster/generator-jh
 
 Apache-2.0 © [Daniel Petisme](https://github.com/danielpetisme)
 
-[npm-image]: https://img.shields.io/npm/v/generator-jhipster-quarkus.svg
+[npm-image]: https://img.shields.io/badge/npm-2.0.2-blue
+
 [npm-url]: https://npmjs.org/package/generator-jhipster-quarkus-dm
 [daviddm-image]: https://david-dm.org/jhipster/jhipster-quarkus.svg?theme=shields.io
 [daviddm-url]: https://david-dm.org/jhipster/jhipster-quarkus
