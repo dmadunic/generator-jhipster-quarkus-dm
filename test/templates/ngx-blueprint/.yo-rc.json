@@ -25,6 +25,6 @@
         "enableTranslation": true,
         "nativeLanguage": "en",
         "languages": ["en", "fr"],
-        "blueprint": "generator-jhipster-quarkus"
+        "blueprint": "generator-jhipster-quarkus-dm"
     }
 }

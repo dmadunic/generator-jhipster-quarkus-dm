@@ -52,7 +52,7 @@ jobs:
       - name: Prepare JHipster Quarkus env
         run: |
           cd sample-app
-          npm link generator-jhipster-quarkus
+          npm link generator-jhipster-quarkus-dm
       - name: Generate the new sample app
         run: |
           cd sample-app

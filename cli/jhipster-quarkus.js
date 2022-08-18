@@ -44,24 +44,24 @@ if (process.argv.includes('upgrade') && !process.argv.includes('--prefer-local')
 
 // Pass in quarkus as a blueprint module.
 // User passes in blueprints flag but without quarkus :> append quarkus
-if (!process.argv.includes('quarkus') && process.argv.includes('--blueprints')) {
+if (!process.argv.includes('quarkus-dm') && process.argv.includes('--blueprints')) {
     for (let i = 0; i < process.argv.length; i++) {
         if (process.argv[i] === '--blueprints') {
-            process.argv[i + 1] = `${process.argv[i + 1].split(',')},quarkus`;
+            process.argv[i + 1] = `${process.argv[i + 1].split(',')},quarkus-dm`;
         }
     }
     // User passes in blueprint flag but without quarkus :> append quarkus
-} else if (!process.argv.includes('quarkus') && process.argv.includes('--blueprint')) {
+} else if (!process.argv.includes('quarkus-dm') && process.argv.includes('--blueprint')) {
     for (let i = 0; i < process.argv.length; i++) {
         if (process.argv[i] === '--blueprint') {
             process.argv[i] = '--blueprints';
-            process.argv[i + 1] = `${process.argv[i + 1]},quarkus`;
+            process.argv[i + 1] = `${process.argv[i + 1]},quarkus-dm`;
         }
     }
     // User do not pass in blueprints or blueprint flag but without quarkus :> append quarkus
-} else if (!process.argv.includes('quarkus') && !process.argv.includes('--blueprint') && !process.argv.includes('--blueprints')) {
+} else if (!process.argv.includes('quarkus-dm') && !process.argv.includes('--blueprint') && !process.argv.includes('--blueprints')) {
     process.argv.push('--blueprints');
-    process.argv.push('quarkus');
+    process.argv.push('quarkus-dm');
 }
 
 requireCLI(preferLocal);

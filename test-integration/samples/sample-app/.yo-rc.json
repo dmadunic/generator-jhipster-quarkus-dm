@@ -32,7 +32,7 @@
         "reactive": false,
         "otherModules": [
             {
-                "name": "generator-jhipster-quarkus",
+                "name": "generator-jhipster-quarkus-dm",
                 "version": "0.1.6"
             }
         ],
@@ -41,7 +41,7 @@
         "clientTheme": "none",
         "blueprints": [
             {
-                "name": "generator-jhipster-quarkus",
+                "name": "generator-jhipster-quarkus-dm",
                 "version": "0.1.6"
             }
         ],
