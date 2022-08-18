@@ -1,6 +1,6 @@
 {
     "name": "generator-jhipster-quarkus-dm",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "description": "JHipster Quarkus blueprint (dmadunic fork)",
     "keywords": [
         "yeoman-generator",
@@ -23,7 +23,7 @@
     },
     "main": "generators/app/index.js",
     "bin": {
-        "jhipster-quarkus": "./cli/jhipster-quarkus.js"
+        "jhipster-quarkus-dm": "./cli/jhipster-quarkus.js"
     },
     "files": [
         "cli",

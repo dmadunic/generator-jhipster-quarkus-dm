@@ -73,11 +73,11 @@ function requireCLI(preferLocal) {
     /* eslint-disable global-require */
     if (preferLocal) {
         try {
-            const localCLI = require.resolve(path.join(process.cwd(), 'node_modules', 'generator-jhipster-quarkus', 'cli', 'cli.js'));
+            const localCLI = require.resolve(path.join(process.cwd(), 'node_modules', 'generator-jhipster-quarkus-dm', 'cli', 'cli.js'));
             if (__dirname !== path.dirname(localCLI)) {
                 // load local version
                 /* eslint-disable import/no-dynamic-require */
-                logger.info("Using jhipster-quarkus version installed locally in current project's node_modules");
+                logger.info("Using jhipster-quarkus-dm version installed locally in current project's node_modules");
                 require(localCLI);
                 return;
             }

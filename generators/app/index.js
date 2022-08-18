@@ -48,7 +48,7 @@ module.exports = class extends AppGenerator {
                 this.log(`${chalk.cyan('            ╚██████╔╝')}${chalk.red('╚██████╔╝██║  ██║██║  ██║██║  ██╗╚██████╔╝███████║')}`);
                 this.log(`${chalk.cyan('             ╚══▀▀═╝ ')}${chalk.red(' ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝')}`);
                 this.log(chalk.white.bold('                            https://www.jhipster.tech - https://quarkus.io\n'));
-                this.log(chalk.white('Welcome to JHipster Quarkus ') + chalk.yellow(`v${packagejs.version}`));
+                this.log(chalk.white('Welcome to JHipster Quarkus (dm) ') + chalk.yellow(`v${packagejs.version}`));
                 this.log(chalk.white(`Application files will be generated in folder: ${chalk.yellow(process.cwd())}`));
                 if (process.cwd() === this.getUserHome()) {
                     this.log(chalk.red.bold('\n️⚠️  WARNING ⚠️  You are in your HOME folder!'));
