@@ -62,7 +62,7 @@ To use this blueprint, run the command below:
 
 ```bash
 
-jhipster --blueprints quarkus
+jhipster --blueprints quarkus-dm
 
 ```
 
